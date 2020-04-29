@@ -1,3 +1,0 @@
-plugin: aws_s3
-regions:
-  - us-east-1

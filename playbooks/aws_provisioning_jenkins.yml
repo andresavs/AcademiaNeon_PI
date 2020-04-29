@@ -3,25 +3,10 @@
   gather_facts: False
   vars_files:
     - vars/aws_credentials.yml
+    - vars/aws.yml
 
   vars:
-    projeto: dh-pi-devopers
-    AWS_access_key: "{{ AWSAccessKeyId }}"
-    AWS_secret_key: "{{ AWSSecretKey }}"
-    instance_type: t2.micro
-    security_group: "{{ projeto }}-ws-sg"
-    image_ami: ami-07ebfd5b3428b6f4d
-    KeyPairDev: "{{ projeto }}-key"
-    region: us-east-1
-    count: 1
-    vpc_cidr_block: 10.0.0.0/16
-    cidr_block: 10.0.1.16/28
-    vpc_name: "{{ projeto }}-vpc"
-    name_service: vm-jenkins
-    route_tag: "{{ projeto }}-route"
-    sub_tag: "{{ projeto }}-subnet"
-
-
+    name_service: devops-jenkins
 
   tasks:
     - name: Amazon EC2 | Create Key Pair
@@ -43,7 +28,7 @@
         region: "{{ region }}"
         aws_access_key: "{{ AWS_access_key }}"
         aws_secret_key: "{{ AWS_secret_key }}"
-        resource_tags: { "Environment":"Development" }
+        resource_tags: { "Environment":"AcademiaNeon" }
       register: create_vpc           
 
     - name: "set fact: VPC ID"
@@ -90,6 +75,10 @@
               from_port: 8080
               to_port: 8080
               cidr_ip: 0.0.0.0/0
+            - proto: tcp
+              from_port: 3000
+              to_port: 3000
+              cidr_ip: 0.0.0.0/0    
         rules_egress:
             - proto: all
               cidr_ip: 0.0.0.0/0
@@ -139,4 +128,12 @@
         port: 22 
         state: started 
       with_items: "{{ ec2.instances }}"
+
+    - name: Create AWS ECR
+      ecs_ecr:
+        name: aws-ecr_devopers 
+        aws_access_key: "{{ AWS_access_key }}"
+        aws_secret_key: "{{ AWS_secret_key }}"                
+        region: "{{ region }}" 
+      register: ecr   
 

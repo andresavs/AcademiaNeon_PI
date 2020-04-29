@@ -1,0 +1,14 @@
+- name: Install Docker (Todas ec2)
+  hosts: aws_ec2
+  become: true
+  gather_facts: yes
+
+  vars:
+    docker__edition: "ce"
+    docker__compose_version: "1.25"
+    docker__state: "latest"
+    docker__users: ["ubuntu"]
+    validate_certs: False
+  
+  roles:
+    - { role: nickjj.docker, remote_src: yes }
