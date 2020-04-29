@@ -8,7 +8,7 @@
   vars:
     name_service: devops-producao
     name_aim_user_s3: digitalhouse_devopers_producao
-    name_bucket_s3: digitalhouse_devopers_producao
+    name_bucket_s3: digitalhouse-devopers-producao
 
   tasks:
     - name: Amazon EC2 | Create Key Pair
@@ -141,7 +141,7 @@
       aws_s3:
         bucket: "{{ name_bucket_s3 }}"
         mode: create
-        region: us-east-1
+        region: "{{ region }}"
 
     - name: Create S3
       s3_bucket:

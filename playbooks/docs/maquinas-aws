@@ -1,0 +1,13 @@
+Jenkins
+Public DNS (IPv4): ec2-100-25-45-203.compute-1.amazonaws.com
+IPv4 Public IP: 100.25.45.203
+
+
+Homolog
+Public DNS (IPv4): ec2-54-166-144-223.compute-1.amazonaws.com
+IPv4 Public IP: 54.166.144.223
+
+
+Producao
+Public DNS (IPv4): ec2-54-89-100-110.compute-1.amazonaws.com
+IPv4 Public IP: 54.89.100.110

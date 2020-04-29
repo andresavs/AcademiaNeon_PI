@@ -22,7 +22,7 @@ Resultados Esperados: Com os aplicativos NodeJS no ar as alunas devem observar a
 
 # APP NodeJS utilizado
 
-https://github.com/bgsouza/digitalhouse-devops-app
+Foi realizado um fork do repositório https://github.com/bgsouza/digitalhouse-devops-app.git para https://github.com/andresavs/digitalhouse-devops-app.git pois teriamos que customizar o arquivo Jenksfile.
 
 
 # Pipeline Jenkins
